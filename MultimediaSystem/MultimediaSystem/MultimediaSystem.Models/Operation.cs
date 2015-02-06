@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MultimediaSystem.Models
 {
-    class Operation
+    public class Operation
     {
     }
 }

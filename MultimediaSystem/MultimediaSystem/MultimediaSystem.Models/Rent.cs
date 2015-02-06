@@ -6,11 +6,22 @@ using MultimediaSystem.InterFaces;
 
 namespace MultimediaSystem.Models
 {
-    class Rent:Operation,IRent
+    public class Rent:Operation,IRent
     {
         private MultimediaItem itemRented;
         private RentState rentState;
         private DateTime dateRented;
+        private DateTime deadLine;
+        private DateTime dateOfReturn;
+        private const decimal FinePerDay = 10m;
+
+        public Rent(MultimediaItem itemRented)
+        {
+            this.ItemRented = itemRented;
+            this.RentState = RentState.Taken;
+            this.DateOfRent = DateTime.Now;
+            this.DeadLine = dateRented.AddDays(3);
+        }
 
         public MultimediaItem ItemRented
         {
@@ -56,11 +67,15 @@ namespace MultimediaSystem.Models
         {
             get
             {
-                throw new NotImplementedException();
+                return this.deadLine;
             }
-            set
+            private set
             {
-                throw new NotImplementedException();
+                if (dateRented==null)
+                {
+                    throw new ArgumentException("This item has not be rented");
+                }
+                this.deadLine = dateRented.AddDays(3);
             }
         }
 
@@ -68,17 +83,19 @@ namespace MultimediaSystem.Models
         {
             get
             {
-                throw new NotImplementedException();
+                return this.dateOfReturn;
             }
-            set
-            {
-                throw new NotImplementedException();
-            }
+        }
+
+        public void ReturnRentedItem() 
+        {
+             this.dateOfReturn= DateTime.Now;
+             this.rentState = RentState.Returned;
         }
 
         public decimal CalculateFine()
         {
-            throw new NotImplementedException();
+            return (decimal)(dateOfReturn - deadLine).TotalDays * FinePerDay;
         }
     }
 }

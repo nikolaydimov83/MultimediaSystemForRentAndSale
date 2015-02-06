@@ -9,6 +9,6 @@ namespace MultimediaSystem.InterFaces
     interface ISale
     {
         MultimediaItem ItemSold { get; set; }
-        DateTime DateOfPurchase { get; set; }
+        DateTime DateOfPurchase { get;  }
     }
 }

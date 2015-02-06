@@ -6,13 +6,7 @@ using MultimediaSystem.InterFaces;
 
 namespace MultimediaSystem.Models
 {
-    enum RentState
-    {
-        Overdue,
-        Returned,
-        InProgress
-    }
-    abstract class MultimediaItem:IItem
+    public abstract class MultimediaItem:IItem
     {
         private string id;
         private string title;
@@ -25,6 +19,13 @@ namespace MultimediaSystem.Models
             this.Title = title;
             this.Price = price;
             this.SetOfGenres = setOfGenres;
+        }
+
+        public MultimediaItem(string id, string title, decimal price)
+        {
+            this.Id = id;
+            this.Title = title;
+            this.Price = price;
         }
 
         public string Id

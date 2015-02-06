@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MultimediaSystem.Models\Enumerations.cs" />
     <Compile Include="MultimediaSystem.Models\Genre.cs" />
     <Compile Include="MultimediaSystem.Interfaces\IItem.cs" />
     <Compile Include="MultimediaSystem.Interfaces\IRent.cs" />

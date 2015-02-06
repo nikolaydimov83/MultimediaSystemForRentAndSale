@@ -9,10 +9,10 @@ namespace MultimediaSystem.InterFaces
     interface IRent
     {
         MultimediaItem ItemRented { get; set; }
-        RentState RentState { get; set; }
-        DateTime DateOfRent { get; set; }
-        DateTime DeadLine { get; set; }
-        DateTime DateOfReturn { get; set; }
+        RentState RentState { get; }
+        DateTime DateOfRent { get; }
+        DateTime DeadLine { get; }
+        DateTime DateOfReturn { get; }
         decimal CalculateFine();
     }
 }

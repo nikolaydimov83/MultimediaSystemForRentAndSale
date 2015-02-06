@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MultimediaSystem.Models
 {
-    class Genre
+    public class Genre
     {
         private string genreName;
 

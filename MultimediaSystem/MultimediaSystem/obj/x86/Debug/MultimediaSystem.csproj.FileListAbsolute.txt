@@ -1,0 +1,5 @@
+C:\Documents and Settings\User\Desktop\Multimedia System\trunk\MultimediaSystem\MultimediaSystem\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\User\Desktop\Multimedia System\trunk\MultimediaSystem\MultimediaSystem\bin\Debug\MultimediaSystem.exe
+C:\Documents and Settings\User\Desktop\Multimedia System\trunk\MultimediaSystem\MultimediaSystem\bin\Debug\MultimediaSystem.pdb
+C:\Documents and Settings\User\Desktop\Multimedia System\trunk\MultimediaSystem\MultimediaSystem\obj\x86\Debug\MultimediaSystem.exe
+C:\Documents and Settings\User\Desktop\Multimedia System\trunk\MultimediaSystem\MultimediaSystem\obj\x86\Debug\MultimediaSystem.pdb
