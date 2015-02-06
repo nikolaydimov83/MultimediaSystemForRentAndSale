@@ -42,7 +42,7 @@ namespace MultimediaSystem.CoreLogic
             Console.WriteLine(movieRent.CalculateFine()); // 7.9200
 
             ShopEngine eng = new ShopEngine(new Dictionary<IItem, int>());
-            eng.ParseInput("supply book 5 id=4fd332&title=Boat&price=20&author=Sellinger&genre=comedy");
+            eng.ParseInput("supply book 5 id=4fd332&title=Boat&price=20&cura=Sellinger&genre=comedy");
    
         }
     }

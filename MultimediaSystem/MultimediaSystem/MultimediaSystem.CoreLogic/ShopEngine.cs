@@ -32,7 +32,16 @@ namespace MultimediaSystem.CoreLogic
                 case "supply":
                     {
                         attributeByKeyAndValue=ParseSupplyCommandToDictionary(inputToArray);
-                        var itemToAdd=CreateIITemByParsedCommand(inputToArray[1], attributeByKeyAndValue);
+                        IItem itemToAdd;
+                        try
+                        {
+                        itemToAdd=CreateIITemByParsedCommand(inputToArray[1], attributeByKeyAndValue);
+                        }
+                        catch (Exception)
+                        {
+                            throw new KeyNotFoundException("One or more of the keys you have entered is invalid");
+                        }
+                        
                         itemsInStore.Add(itemToAdd,int.Parse(inputToArray[2]));
                     }
                     break;
@@ -40,7 +49,7 @@ namespace MultimediaSystem.CoreLogic
                     Console.WriteLine("Wrong Operation enetered");
                     break;
             }
-
+                        
             IItem bookToAddinSupply = new Book(attributeByKeyAndValue["id"],
                                             attributeByKeyAndValue["title"],
                                             Decimal.Parse(attributeByKeyAndValue["price"]),
