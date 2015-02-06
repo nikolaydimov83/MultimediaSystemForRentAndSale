@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MultimediaSystem.InterFaces;
+using System.Threading;
 
 namespace MultimediaSystem.Models
 {
@@ -10,19 +11,45 @@ namespace MultimediaSystem.Models
     {
         private MultimediaItem itemRented;
         private RentState rentState;
-        private DateTime dateRented;
+        private DateTime dateOfRent;
         private DateTime deadLine;
         private DateTime dateOfReturn;
-        private const decimal FinePerDay = 10m;
 
         public Rent(MultimediaItem itemRented)
         {
             this.ItemRented = itemRented;
             this.RentState = RentState.Taken;
             this.DateOfRent = DateTime.Now;
-            this.DeadLine = dateRented.AddDays(3);
+            this.DeadLine = DateTime.Now.AddDays(30);
         }
 
+        public Rent(MultimediaItem itemRented, DateTime dateOfRent, DateTime deadline)
+        {
+            this.ItemRented = itemRented;
+            this.RentState = RentState.Taken;
+            this.DateOfRent = dateOfRent;
+            this.DeadLine = deadline;
+        }
+
+        public Rent(MultimediaItem itemRented, DateTime dateOfRent)
+        {
+            this.ItemRented = itemRented;
+            this.RentState = RentState.Taken;
+            this.DateOfRent = dateOfRent;
+            this.DeadLine = dateOfRent.AddDays(30);
+        }
+
+
+        public decimal RentFine
+        {
+            get 
+            {
+                CheckForOverdue();
+                return this.CalculateFine(); 
+            }
+            
+        }
+        
         public MultimediaItem ItemRented
         {
             get
@@ -43,6 +70,7 @@ namespace MultimediaSystem.Models
         {
             get
             {
+                CheckForOverdue();
                 return this.rentState;
             }
             private set
@@ -55,11 +83,11 @@ namespace MultimediaSystem.Models
         {
             get
             {
-                return this.dateRented;
+                return this.dateOfRent;
             }
             private set
             {
-                this.dateRented = value;
+                this.dateOfRent = value;
             }
         }
 
@@ -71,11 +99,11 @@ namespace MultimediaSystem.Models
             }
             private set
             {
-                if (dateRented==null)
+                if (dateOfRent==null)
                 {
                     throw new ArgumentException("This item has not be rented");
                 }
-                this.deadLine = dateRented.AddDays(3);
+                this.deadLine = value;
             }
         }
 
@@ -89,13 +117,40 @@ namespace MultimediaSystem.Models
 
         public void ReturnRentedItem() 
         {
-             this.dateOfReturn= DateTime.Now;
-             this.rentState = RentState.Returned;
+            this.dateOfReturn= DateTime.Now;
+            this.rentState = RentState.Returned;
+
         }
 
         public decimal CalculateFine()
         {
-            return (decimal)(dateOfReturn - deadLine).TotalDays * FinePerDay;
+            CheckForOverdue();
+            if ((DateTime.Now - deadLine).TotalDays > 0)
+            {
+                if (RentState == RentState.Overdue)
+                {
+                    decimal finePerDay = 0.01m * itemRented.Price;
+                    return ((decimal)(this.deadLine - DateTime.Now).TotalDays * finePerDay)*(-1);
+                }
+                else 
+                {
+                    decimal finePerDay = 0.01m * itemRented.Price;
+                    return ((decimal)(this.deadLine - this.dateOfReturn).TotalDays * finePerDay)*(-1);
+                }
+            }
+            else 
+            {
+                return 0;
+            }
+            
+        }
+        
+        public void CheckForOverdue()
+        {
+            if ((this.rentState == RentState.Taken)&&(this.deadLine<DateTime.Now)) 
+            {
+                this.rentState = RentState.Overdue;
+            }
         }
     }
 }

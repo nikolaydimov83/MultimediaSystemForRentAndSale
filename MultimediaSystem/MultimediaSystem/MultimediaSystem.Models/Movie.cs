@@ -16,15 +16,16 @@ namespace MultimediaSystem.Models
             set { lenght = value; }
         }
         
-        public Movie(string id, string title, decimal price, List<Genre> setOfGenres)
+        public Movie(string id, string title, decimal price, int lenght,List<Genre> setOfGenres)
             :base(id,title,price,setOfGenres)
         {
-
+            this.Lenght = lenght;
         }
 
-        public Movie(string id, string title, decimal price, Genre genre)
+        public Movie(string id, string title, decimal price, int lenght, Genre genre)
             : base(id, title, price)
         {
+            this.Lenght = lenght;
             this.SetOfGenres = new List<Genre> { genre };
         }
     }

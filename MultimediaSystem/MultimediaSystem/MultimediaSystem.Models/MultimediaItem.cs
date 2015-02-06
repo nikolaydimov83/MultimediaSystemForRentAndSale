@@ -13,7 +13,7 @@ namespace MultimediaSystem.Models
         private decimal price;
         private List<Genre> setOfGenres;
 
-        public MultimediaItem(string id, string title, decimal price, List<Genre> setOfGenres)
+        protected MultimediaItem(string id, string title, decimal price, List<Genre> setOfGenres)
         {
             this.Id = id;
             this.Title = title;
@@ -21,7 +21,7 @@ namespace MultimediaSystem.Models
             this.SetOfGenres = setOfGenres;
         }
 
-        public MultimediaItem(string id, string title, decimal price)
+        protected MultimediaItem(string id, string title, decimal price)
         {
             this.Id = id;
             this.Title = title;

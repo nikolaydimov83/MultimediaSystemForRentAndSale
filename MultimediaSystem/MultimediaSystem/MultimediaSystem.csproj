@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MultimediaSystem.CoreLogic\MidnightNotifier.cs" />
+    <Compile Include="MultimediaSystem.CoreLogic\ShopEngine.cs" />
     <Compile Include="MultimediaSystem.Models\Enumerations.cs" />
     <Compile Include="MultimediaSystem.Models\Genre.cs" />
     <Compile Include="MultimediaSystem.Interfaces\IItem.cs" />

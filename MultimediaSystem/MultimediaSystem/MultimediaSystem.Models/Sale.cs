@@ -15,7 +15,11 @@ namespace MultimediaSystem.Models
             this.ItemSold = itemSold;
             this.DateOfPurchase = DateTime.Now;
         }
-
+        public Sale(MultimediaItem itemSold,DateTime dateOfPurchase)
+        {
+            this.ItemSold = itemSold;
+            this.DateOfPurchase = dateOfPurchase;
+        }
         public MultimediaItem ItemSold
         {
             get
