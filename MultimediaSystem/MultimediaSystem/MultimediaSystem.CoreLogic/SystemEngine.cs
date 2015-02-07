@@ -42,7 +42,30 @@ namespace MultimediaSystem.CoreLogic
             Console.WriteLine(movieRent.CalculateFine()); // 7.9200
 
             ShopEngine eng = new ShopEngine(new Dictionary<IItem, int>());
-            eng.ParseInput("supply book 5 id=4fd332&title=Boat&price=20&cura=Sellinger&genre=comedy");
+            eng.ExecuteInputCommand("supply book 5 id=4fd332&title=Boat&price=20&author=Sellinger&genre=comedy");
+            eng.ExecuteInputCommand("supply movie 40 id=sfd332&title=The_Godfather&price=79,00&genre=crime&legth=187");
+            eng.ExecuteInputCommand("sell 4fd332 01/01/2014");
+            eng.ExecuteInputCommand("sell 4fd332 10/01/2014");
+            eng.ExecuteInputCommand("sell 4fd332 15/01/2014");
+            eng.ExecuteInputCommand("rent 4fd332 01/01/2014 25/02/2014");
+            eng.ExecuteInputCommand("report sales 09/01/2014");
+            eng.ExecuteInputCommand("report rents");
+            eng.ExecuteInputCommand("supply book 5 id=4fd332&title=Razkazi&price=7,99&author=Elin_Pelin&genre=story");
+
+            string userInput="";
+
+            while (userInput!="exit")
+            {
+                userInput = Console.ReadLine();
+                try
+                {
+                    eng.ExecuteInputCommand(userInput);
+                }
+                catch (Exception ke)
+                {
+                    Console.WriteLine(ke.Message);
+                }
+            }
    
         }
     }
